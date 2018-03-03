@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+
 
 public class Work {
 	
@@ -8,7 +8,7 @@ public class Work {
 	private String remark;
 	private int status;
 	private int priority;
-	private Date date;
+	private String date;
 	
 	public String getName() {
 		return name;
@@ -34,10 +34,10 @@ public class Work {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

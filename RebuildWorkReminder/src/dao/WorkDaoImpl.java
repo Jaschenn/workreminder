@@ -12,6 +12,7 @@ import util.WorkException;
 
 public class WorkDaoImpl implements IWorkDao{
 
+	@SuppressWarnings("resource")
 	@Override
 	public void addWork(Work work) throws WorkException {
 		// TODO Auto-generated method stub
@@ -38,7 +39,7 @@ public class WorkDaoImpl implements IWorkDao{
 		preparedStatement.setString(2, work.getRemark());
 		preparedStatement.setInt(3, work.getStatus());
 		preparedStatement.setInt(4, work.getPriority());
-		preparedStatement.setDate(5, work.getDate());
+		preparedStatement.setString(5, work.getDate());
 		preparedStatement.executeUpdate();
 		
 		} catch (SQLException e) {

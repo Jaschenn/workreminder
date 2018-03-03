@@ -58,7 +58,7 @@
             <h1 class="cover-heading">作业/工作/任务提醒</h1>
             <p class="lead">时间是什么-白驹过隙。</p>
             <p class="lead">
-              <a href="../center/center.jsp" class="btn btn-lg btn-default">点击进入</a>
+              <a href="./List/workList.jsp" class="btn btn-lg btn-default">点击进入</a>
             </p>
           </div>
 

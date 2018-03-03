@@ -3,53 +3,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>WorkReminder</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../bootstrap-3.3.7-dist/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+	
+	<script src="/bootstrap-3.3.7-dist/js/jquery-3.3.1.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../bootstrap-3.3.7-dist/assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<script src="/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+	
 </head>
 <body>
+<script type="text/javascript" src="../jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+	<div class="container">
+    <form action="" class="form-horizontal">
+        <fieldset>
+            <legend>Test</legend>
+            <div class="control-group">
+                <label class="control-label">DateTime Picking</label>
+                <div class="controls input-append date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+        </fieldset>
+    </form>
+	</div>
+	
+	
+	
 	
 	<div class="container">
 	<div class="row clearfix">
 		<div class="col-md-8 column">
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						Panel title
-					</h3>
-				</div>
-				<div class="panel-body">
-					Panel content
-				</div>
-				<div class="panel-footer">
-					Panel footer
-				</div>
-			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -141,11 +140,11 @@
 				</tbody>
 			</table>
 		</div>
+		
+		
+		
 		<div class="col-md-4 column">
-			<div class="progress">
-				<div class="progress-bar progress-success">
-				</div>
-			</div>
+			
 			<form class="form-horizontal" role="form" action="dispose.jsp" method="post">
 				<div class="form-group">
 					 <label for="inputEmail3" class="col-sm-2 control-label">事件</label>
@@ -161,17 +160,25 @@
 				</div>
 				<div class="form-group">
 					 <label for="inputPassword3" class="col-sm-2 control-label">时间</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="date" />
+
+					    <div class="col-sm-10">
+						<input type="text" class="form-control" id="timepicker" name="time"  readonly/>
 					</div>
+     
+   					 <script type="text/javascript">
+    					    $('#timepicker').datetimepicker({
+     				       format: "yyyy-MM-dd-HH:mm",
+    			        autoclose: true,
+    					todayBtn: true,
+    			        pickerPosition: "bottom-left"
+   							     });
+   					 </script>            
 				</div>
 				<div class="form-group">
 					 <label for="inputPassword3" class="col-sm-2 control-label">优先级</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="priority" />
 					</div>
-				</div>
-				<div class="form-group">
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
