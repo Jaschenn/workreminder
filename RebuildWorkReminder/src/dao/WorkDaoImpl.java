@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import model.Work;
 import util.DBUtil;
@@ -75,9 +78,38 @@ public class WorkDaoImpl implements IWorkDao{
 	}
 
 	@Override
-	public Work loadWork(String workname, Date date) {
+	public List<Work> loadWork(String workname, Date date) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection connection = DBUtil.getConnection();
+		//准备sql语句
+		String sql = "select * from worklist ";
+		//创建语句传输对象
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		//集合中只能放入user对象
+		List<Work> worklist = new ArrayList<Work>();
+		Work work = null;
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				work =new Work();
+				work.setName(resultSet.getString("name"));
+				work.setRemark(resultSet.getString("remark"));
+				work.setStatus(resultSet.getInt("status"));
+				work.setPriority(resultSet.getInt("priority"));
+				work.setDate(resultSet.getString("date"));
+			worklist.add(work);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(resultSet);
+			DBUtil.close(preparedStatement);
+			DBUtil.close(connection);
+		}
+		return  worklist;
 	}
 
 }

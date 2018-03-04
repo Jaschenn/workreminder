@@ -27,8 +27,21 @@
 	work.setStatus(status);
 	work.setPriority(priority);
 	work.setDate(time);
+	int result=0;
+	try{
 	workDao.addWork(work);
+	}catch(Exception e){
+		
+		System.out.println("添加失败，该任务已经存在");
+		session.setAttribute("result", result);
+		%>
+		
+		<jsp:forward page="workList.jsp"></jsp:forward>
+		<% 
+	}
+	result=1;
 	System.out.println("添加成功");
+	session.setAttribute("result", result);
 %>
 
 	<jsp:forward page="workList.jsp"></jsp:forward>

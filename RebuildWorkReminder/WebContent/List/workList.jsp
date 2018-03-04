@@ -1,3 +1,9 @@
+<%@page import="java.nio.channels.SeekableByteChannel"%>
+<%@page import="model.Work"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.WorkDaoImpl"%>
+<%@page import="dao.IWorkDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,6 +33,31 @@
 <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 	<div class="container">
+	
+	<% if(session.getAttribute("result")!=null){
+	int result=(int)session.getAttribute("result");
+	if(result==1){
+		%>
+		<div id="myAlert" class="alert alert-success">
+		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		<strong>添加事件成功</strong>少年强则中国强。
+	</div>
+	<% 
+		
+	}else{
+		%>
+		<div id="myAlert" class="alert alert-warning">
+		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		<strong>添加事件失败</strong>请检查是否重复！
+	</div>
+		
+		<% 
+	} 
+	}%>
+	
+	
+	
+	
     <form action="" class="form-horizontal">
         <fieldset>
             <legend>Test</legend>
@@ -53,20 +84,75 @@
 				<thead>
 					<tr>
 						<th>
-							编号
+							事件标题
 						</th>
 						<th>
-							产品
+							备注
 						</th>
 						<th>
-							交付时间
+							到期时间
 						</th>
 						<th>
-							状态
+							优先级
 						</th>
 					</tr>
 				</thead>
 				<tbody>
+				<%
+				 WorkDaoImpl wdI=new WorkDaoImpl();
+				List<Work> worklist=wdI.loadWork(null, null);
+				int j=worklist.size();
+				for(int i=0;i<j;i++){
+					%>
+					<% if(worklist.get(i).getPriority()==1){
+						%>
+						<tr class="success">
+						<% 		
+					}else if(worklist.get(i).getPriority()==2){
+						
+						%>
+						<tr class="warning">
+						<% 	
+		
+					} else if(worklist.get(i).getPriority()==3){
+						
+						%>
+						<tr class="info">
+						<% 	
+						
+					}else {
+						
+						%>
+						<tr >
+						<% 	
+						
+					}
+					%>
+					<td>
+						<%=worklist.get(i).getName() %>
+					</td>
+					<td>
+						<%=worklist.get(i).getRemark() %>
+					</td>
+					<td>
+						<%=worklist.get(i).getDate() %>
+					</td>
+					<td>
+						<%=worklist.get(i).getPriority() %>
+					</td>
+				</tr>
+					
+				<% 
+				}
+				
+				
+				
+				
+				
+				%>
+				
+				
+				
 					<tr>
 						<td>
 							1
